@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3D Cube</title>
+    <style>
+        :root {
+            --box-size: 200px;
+            --translateZ: calc(var(--box-size) / 2);
+        }
+
+        .box {
+            /*position: relative;*/
+            width: var(--box-size);
+            height: var(--box-size);
+            transform-style: preserve-3d;
+            transition: all .1s ease-in-out;
+        }
+
+        .box .face {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            backface-visibility: inherit;
+            font-size: 40px;
+            color: #fff;
+        }
+
+        .box {
+            --transform: rotate3d(1, 1, 1, -45deg);
+            animation-duration: 5s;
+            animation-timing-function: linear;
+            animation-delay: 0s;
+            animation-iteration-count: infinite;
+            animation-direction: normal;
+            animation-fill-mode: none;
+            animation-play-state: running;
+            animation-name: rotation3d;
+        }
+
+        @keyframes rotation3d {
+            0% {
+                transform: rotate3d(1, 1, 1, 0deg);
+            }
+            100% {
+                transform: rotate3d(1, 1, 1, 360deg);
+            }
+        }
+
+        .container {
+            margin: calc(50% - calc(var(--box-size) / 2));
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="box">
+        <div class="face  front" style="background: rgba(10, 10, 10, .1); transform: rotateY(0deg)    translateZ(var(--translateZ));">front</div>
+        <div class="face   left" style="background: rgba(10, 10, 10, .3); transform: rotateY(-90deg)  translateZ(var(--translateZ));">left</div>
+        <div class="face    top" style="background: rgba(10, 10, 10, .5); transform: rotateX(90deg)   translateZ(var(--translateZ));">top</div>
+        <div class="face  right" style="background: rgba(10, 10, 10, .3); transform: rotateY(90deg)   translateZ(var(--translateZ));">right</div>
+        <div class="face bottom" style="background: rgba(10, 10, 10, .5); transform: rotateX(-90deg)  translateZ(var(--translateZ));">bottom</div>
+        <div class="face   back" style="background: rgba(10, 10, 10, .1); transform: rotateX(180deg)  translateZ(var(--translateZ));">back</div>
+    </div>
+</div>
+</body>
+</html>
